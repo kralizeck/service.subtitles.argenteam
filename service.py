@@ -240,10 +240,7 @@ def download(id, url, filename, search_string=""):
     xbmcvfs.mkdirs(__temp__)
 
     filename = os.path.join(__temp__, filename + ".zip")
-    ctx = ssl.create_default_context()
-    ctx.check_hostname = False  
-    ctx.verify_mode = ssl.CERT_NONE
-    req = urllib2.Request(url, headers={"User-Agent": "Kodi-Addon"}, context=ctx)
+    req = urllib2.Request(url, headers={"User-Agent": "Kodi-Addon"})
     sub = urllib2.urlopen(req).read()
     with open(filename, "wb") as subFile:
         subFile.write(sub)
