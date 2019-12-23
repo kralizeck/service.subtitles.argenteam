@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import xbmc
-import urllib2
+import urllib2, ssl
 #import re
 
 def log(module, msg):
@@ -11,7 +11,10 @@ def log(module, msg):
 def geturl(url):
     log(__name__, "Getting url: %s" % url)
     try:
-        req = urllib2.Request(url, headers={"User-Agent": "Kodi-Addon"})
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False  
+        ctx.verify_mode = ssl.CERT_NONE
+        req = urllib2.Request(url, headers={"User-Agent": "Kodi-Addon"}, context=ctx)
         response = urllib2.urlopen(req)
         content = response.read()
         #Fix non-unicode characters in movie titles
