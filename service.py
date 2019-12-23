@@ -4,7 +4,7 @@ import os
 import sys
 import xbmc
 import urllib
-import urllib2
+import urllib2, sll
 import xbmcvfs
 import xbmcaddon
 import xbmcgui
